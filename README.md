@@ -1,4 +1,4 @@
-Koa2 RESTful API 服务器脚手架
+Koa2 RESTful API 服务器脚手架(此文件是复制过来自用，请到原GitHub拉取)
 =============================
 
 这是一个基于Koa2的轻量级RESTful API Server脚手架，支持ES6。
