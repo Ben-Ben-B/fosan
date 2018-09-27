@@ -5,9 +5,11 @@ import path from 'path'
 const publicKey = fs.readFileSync(path.join(__dirname, '../../publicKey.pub'))
 
 // 用户登录的时候返回token
-// let token = jwt.sign({
-//   userInfo: userInfo // 你要保存到token的数据
-// }, publicKey, { expiresIn: '7d' })
+export let getToken =  (userInfo)=>{
+  return jwt.sign({
+    userInfo: userInfo // 你要保存到token的数据
+  }, publicKey, { expiresIn: '7d' })
+}
 
 /**
  * 检查授权是否合法

@@ -18,7 +18,7 @@ export let DB = {
   host: 'localhost', // 服务器地址
   port: 3306, // 数据库端口号
   username: 'root', // 数据库用户名
-  password: '!aB123456', // 数据库密码
+  password: '123456', // 数据库密码
   database: 'fsestate', // 数据库名称
   char:'utf8mb4',
   prefix: 'api_' // 默认"api_"

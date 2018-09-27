@@ -4,6 +4,8 @@ import controllers from '../controllers/index.js'
 const router = new KoaRouter()
 
 router
+  .get('/public/list', controllers.fosan.Get)
+  .post('/public/login', controllers.login.Post)
   .get('/public/get', function (ctx, next) {
     ctx.body = '禁止访问！'
   }) // 以/public开头则不用经过权限认证
@@ -13,6 +15,6 @@ router
   .put('/api/:name', controllers.api.Put)
   .del('/api/:name', controllers.api.Delect)
   .post('/auth/:action', controllers.auth.Post)
-  .get('/public/list', controllers.fosan.Get)
+  
 
 module.exports = router
