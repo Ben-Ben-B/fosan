@@ -17,6 +17,7 @@ export let getToken =  (userInfo)=>{
  */
 export let CheckAuth = (ctx) => {
   let token = ctx.request.header.authorization
+  console.log(token,123)
   try {
     let decoded = jwt.verify(token.substr(7), publicKey)
     if (decoded.userInfo) {
@@ -27,7 +28,7 @@ export let CheckAuth = (ctx) => {
       //   result: decoded.userInfo
       // }
     } else {
-      return statusCode.ERROR_120006('token失效')
+      return statusCode.ERROR_120006('token失效1')
       // return {
       //   status: 403,
       //   result: {

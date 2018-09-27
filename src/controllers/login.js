@@ -4,8 +4,7 @@ import {statusCode} from '../tool/status-code.js'
 export let Post = async (ctx) => {
   const {name, password} = ctx.request.body
       try {
-        var result = await knex.select('*').from('user').where({'name':name,'password':password}).map(item=>{return item.permissions}) + ''
-        console.log(result,name, password)
+        let result = await knex.select('*').from('user').where({'name':name,'password':password}).map(item=>{return item.permissions}) + ''
         if(!result){
           ctx.body = statusCode.ERROR_10212('密码或账号不对') 
         }else{
@@ -16,8 +15,8 @@ export let Post = async (ctx) => {
           }) 
         }
         
-      } catch (e) {
-          ctx.body = statusCode.ERROR_10212(eerror.sqlMessage)
+      } catch (error) {
+          ctx.body = statusCode.ERROR_10212(error.sqlMessage)
       }
    
   }

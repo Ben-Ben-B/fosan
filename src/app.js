@@ -7,6 +7,7 @@ import {
 import path from 'path'
 import MainRoutes from './routes/main-routes'
 import ErrorRoutesCatch from './middleware/ErrorRoutesCatch'
+import Auth from './middleware/auth'
 import ErrorRoutes from './routes/error-routes'
 import jwt from 'koa-jwt'
 import fs from 'fs'
@@ -43,6 +44,7 @@ app
     textLimit: '10mb'
   })) // Processing request
   // .use(PluginLoader(SystemConfig.System_plugin_path))
+  .use(Auth)
   .use(MainRoutes.routes())
   .use(MainRoutes.allowedMethods())
   .use(ErrorRoutes())
