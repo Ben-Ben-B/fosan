@@ -1,6 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 import { System as SystemConfig } from '../config'
+import {statusCode} from '../tool/status-code.js'
 
 export default (ctx) => {
   // 设置允许跨域的域名称
@@ -14,7 +15,7 @@ export default (ctx) => {
 
     // 返回结果
     ctx.status = 200
-    ctx.body = 'options OK'
+    ctx.body = statusCode.SUCCESS_200('options OK')
     return
   }
 
@@ -64,5 +65,5 @@ export default (ctx) => {
   result = SystemConfig.API_server_type + SystemConfig.API_server_host + ':' + SystemConfig.API_server_port + '/assets/uploads' + filename
 
   // 返回结果
-  ctx.body = result
+  ctx.body = statusCode.SUCCESS_200('',result)
 }
