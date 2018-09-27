@@ -17,7 +17,7 @@ export let Post = async (ctx) => {
         }
         
       } catch (e) {
-          ctx.body = statusCode.ERROR_10212(e)
+          ctx.body = statusCode.ERROR_10212(eerror.sqlMessage)
       }
    
   }
