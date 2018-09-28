@@ -105,7 +105,7 @@ $ cat logs/out.log
 $ tail -f logs/out.log
 ```
 
-###nodejs服务后台持续运行
+### nodejs服务后台持续运行
 
 forever安装
 
