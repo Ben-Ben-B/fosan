@@ -105,6 +105,29 @@ $ cat logs/out.log
 $ tail -f logs/out.log
 ```
 
+###nodejs服务后台持续运行
+
+forever安装
+
+```
+npm install -g forever
+```
+
+forever使用
+
+```
+forever start ./dist/app.js     //app.js是你要启动的js文件
+forever list    //会列出forever正在运行的服务脚本
+forever stop ./dist/app.js   //停止服务运行
+```
+
+查看帮助信息：
+
+```
+forever --help
+```
+
+
 ### 配合Vue-cli部署说明
 
 Vue-cli（Vue2）运行'npm run build'后会在'dist'目录中生成所有静态资源文件。推荐使用Nginx处理静态资源以达最佳利用效果，然后通过上述任意一种方法部署RESTful API服务器。前后端是完全分离的，请注意Koa2 RESTful API Server项目中config/main.json里面的跨域配置。
