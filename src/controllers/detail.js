@@ -22,7 +22,7 @@ export let Get = async (ctx) => {
         }
         
       } catch (error) {
-          ctx.body = statusCode.ERROR_10212(error.sqlMessage)
+          ctx.body = statusCode.ERROR_10212(error.sqlMessage?error.sqlMessage:error)
       }
    
   }

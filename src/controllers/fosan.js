@@ -33,7 +33,7 @@ export let Get = async (ctx) => {
           }
         ctx.body = statusCode.SUCCESS_200('success',data)
     } catch (error) {
-        ctx.body = statusCode.ERROR_10212(error.sqlMessage)
+        ctx.body = statusCode.ERROR_10212(error.sqlMessage?error.sqlMessage:error)
     }
 }
 // var DB = require('../lib/sequelize.js');

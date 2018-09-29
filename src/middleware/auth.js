@@ -25,7 +25,7 @@ module.exports = async (ctx, next) =>{
             await next();
         }
     } catch (error) {
-        ctx.body = statusCode.ERROR_10212(error.sqlMessage)
+        ctx.body = statusCode.ERROR_10212(error.sqlMessage?error.sqlMessage:error)
     }
     
 }
