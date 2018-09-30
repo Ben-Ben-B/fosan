@@ -5,7 +5,7 @@ module.exports = function () {
       switch (err.status) {
         case 401:
           ctx.status = 200
-          ctx.body = statusCode.ERROR_120001('token失效')
+          ctx.body = statusCode.ERROR_120001('请先登陆')
           // ctx.body = {
           //   status: 401,
           //   result: {

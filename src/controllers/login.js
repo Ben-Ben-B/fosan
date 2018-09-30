@@ -16,7 +16,8 @@ export let Post = async (ctx) => {
         }
         
       } catch (error) {
-          ctx.body = statusCode.ERROR_10212(error.sqlMessage?error.sqlMessage:error)
+          let msg = error.sqlMessage ? error.sqlMessage : 'login:' + error
+          ctx.body = statusCode.ERROR_10212(msg)
       }
    
   }
