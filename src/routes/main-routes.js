@@ -5,6 +5,7 @@ const router = new KoaRouter()
 
 router
   .post('/public/login', controllers.login.Post)
+  .post('/public/wxLogin', controllers.wxLogin.Post)
   .get('/public/get', function (ctx, next) {
     ctx.body = '禁止访问！'
   }) // 以/public开头则不用经过权限认证
