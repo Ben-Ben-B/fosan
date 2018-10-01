@@ -91,3 +91,20 @@ export const formatTimeString = (time, formatParam) => {
     }
   })
 }
+
+/**
+ * 判断是不是json格式的数组
+ * @param  {[type]} string   [description]
+ */
+export const isJSON_Arr = (str) => {
+  if (typeof str == 'string') {
+      try {
+          var obj=JSON.parse(str);
+          return Array.isArray(obj);
+      } catch(e) {
+          return false;
+      }
+  }else{
+    return false
+  }
+}

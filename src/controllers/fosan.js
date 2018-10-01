@@ -3,19 +3,19 @@ import {statusCode} from '../tool/status-code.js'
 export let Get = async (ctx) => {
     let { page,size,gender,startTime,endTime} = ctx.query
     if(!startTime&&!endTime ){
-       startTime = 1980
+       startTime = 1900
        endTime = 2011
     }
     parseInt(page) < 1 ? page = 1 : ''
     parseInt(size) < 1 ? size = 10 : ''
     try {
-        let date = new Date;
+        let date = new Date();
         let year = date.getFullYear(); 
         //返回所有查询结果
         // let result = await knex.select('*').from('fsestate').where('genderName','女').whereRaw(`SUBSTR(identity_card,7,4)='1996'`).limit(10)
         let list = await knex.select('*').from('fsestate').where((builder)=>{
             //判断男女
-            (gender==0||gender==1)&&gender!=='' ? builder.where('gender',gender) : ''
+            gender==0||gender==1 ? builder.where('gender',gender) : ''
         }).whereRaw(`SUBSTR(identity_card,7,4)>'${startTime-1}'`).whereRaw(`SUBSTR(identity_card,7,4)<'${endTime+1}'`).limit(size).offset(Number(page-1) * size).map(item=>{
             item.age = year - item.identity_card.substr(6,4)
             let str = item.identity_card.substr(6,8)
@@ -26,9 +26,9 @@ export let Get = async (ctx) => {
         let count = await knex('fsestate').where((builder)=>{
             //判断男女
             (gender==0||gender==1)&&gender!=='' ? builder.where('gender',gender) : ''
-        }).whereRaw(`SUBSTR(identity_card,7,4)>'${startTime-1}'`).whereRaw(`SUBSTR(identity_card,7,4)<'${endTime+1}'`).count('*').map(item=>{return item['count(*)']}) + ''
+        }).whereRaw(`SUBSTR(identity_card,7,4)>'${startTime-1}'`).whereRaw(`SUBSTR(identity_card,7,4)<'${endTime+1}'`).count({list:'id'}).map(item=>{return item.list})
         let data = {
-            count:parseInt(count),
+            count:count[0],
             list
           }
         ctx.body = statusCode.SUCCESS_200('success',data)

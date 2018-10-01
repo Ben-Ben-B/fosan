@@ -12,6 +12,10 @@ router
   .all('/upload', controllers.upload.default)
   .get('/api/list', controllers.fosan.Get)
   .get('/api/detail', controllers.detail.Get)
+  //我的朋友圈
+  .post('/api/myfri/add', controllers.addMyfri.Post)
+  .get('/api/myfri/list', controllers.getMyfri.Get)
+  .get('/api/myfri/detail', controllers.getMyfDetail.Get)
   .get('/api/:name', controllers.api.Get)
   .post('/api/:name', controllers.api.Post)
   .put('/api/:name', controllers.api.Put)

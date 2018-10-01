@@ -39,6 +39,14 @@ const statusCode = {
         }
     },
 
+    ERROR_120007: (msg, data={}) => {
+        return {
+            code: 120007,
+            msg,
+            data
+        }
+    },
+
     ERROR_10212: (msg, data={}) => {
         return {
             code: 10212,

@@ -4,13 +4,16 @@ import {statusCode} from '../tool/status-code.js'
 export let Post = async (ctx) => {
   const {name, password} = ctx.request.body
       try {
-        let result = await knex.select('*').from('user').where({'name':name,'password':password}).map(item=>{return item.permissions}) + ''
-        if(!result){
+        let result = await knex.select('*').from('user').where({'name':name,'password':password})
+        let resultObj = result[0]
+        if(!resultObj){
           ctx.body = statusCode.ERROR_10212('密码或账号不对') 
         }else{
-          let token = getToken(JSON.stringify({name, password}))
+          //派发token
+          let token = getToken(JSON.stringify(resultObj))
           ctx.body = statusCode.SUCCESS_200('success',{
-            permissions:result,
+            jump_path:resultObj.jump_path,
+            permissions:resultObj.permissions,
             token
           }) 
         }
