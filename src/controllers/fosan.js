@@ -15,7 +15,7 @@ export let Get = async (ctx) => {
         // let result = await knex.select('*').from('fsestate').where('genderName','女').whereRaw(`SUBSTR(identity_card,7,4)='1996'`).limit(10)
         let list = await knex.select('*').from('fsestate').where((builder)=>{
             //判断男女
-            gender==0||gender==1 ? builder.where('gender',gender) : ''
+            (gender==0||gender==1)&&gender!=='' ? builder.where('gender',gender) : ''
         }).whereRaw(`SUBSTR(identity_card,7,4)>'${startTime-1}'`).whereRaw(`SUBSTR(identity_card,7,4)<'${endTime+1}'`).limit(size).offset(Number(page-1) * size).map(item=>{
             item.age = year - item.identity_card.substr(6,4)
             let str = item.identity_card.substr(6,8)
